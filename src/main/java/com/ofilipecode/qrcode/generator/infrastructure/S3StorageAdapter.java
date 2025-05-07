@@ -2,11 +2,13 @@ package com.ofilipecode.qrcode.generator.infrastructure;
 
 import com.ofilipecode.qrcode.generator.ports.StoragePort;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
+@Component
 public class S3StorageAdapter implements StoragePort {
 
     private final S3Client s3Client;
@@ -37,7 +39,5 @@ public class S3StorageAdapter implements StoragePort {
 
         return String.format("https://%s.s3.%s.amazonaws.com/%s",
                 bucketName, region, filename);
-
-
     }
 }
